@@ -7,14 +7,23 @@ const core = require('cors');
 const  app = express();
 const PORT = process.env.PORT || 5000;
 
+// core data use 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(morgan('dev'));
 app.use(helmet());
 app.use(core());
 
-mongoose.connect("mongodb://localhost:27017");
+// user data use
+const UserRoutes = require('./routes/user_route');
+app.use('/api/user',UserRoutes)  
+ 
+
+//mongoose.connect("mongodb://localhost:27017");//mongodb://127.0.0.1/my_database
+//mongoose.connect("mongodb://127.0.0.1/test");//mongodb://127.0.0.1/my_database
+mongoose.connect('mongodb://127.0.0.1:27017/test')
+  .then(() => console.log('Db Connected!'));
 
 app.listen(PORT,()=>{
-    console.log("server is running");
+    console.log(`server is running ${PORT}`);
 });
