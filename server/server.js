@@ -33,6 +33,9 @@ app.use("/api/category", CategoryRoutes);
 const ProductRoutes = require("./routes/product_routes");
 app.use("/api/product", ProductRoutes);
 
+//card
+const CardsRoutes = require("./routes/card_routes");
+app.use("/api/cards", CardsRoutes);
 // server listen
 app.listen(PORT, () => {
   console.log(`server is running ${PORT}`);
