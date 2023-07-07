@@ -28,7 +28,7 @@ class UserRepository {
   Future singIn({required String email, required String password}) async {
     try {
       Response response = await _api.sendRequest
-          .post("/user/singIn", data: jsonEncode({"email": email, "password": password}));
+          .post("/user/signIn", data: jsonEncode({"email": email, "password": password}));
 
       ApiResponse apiResponse = ApiResponse.fromResponse(response);
       if (!apiResponse.success) {

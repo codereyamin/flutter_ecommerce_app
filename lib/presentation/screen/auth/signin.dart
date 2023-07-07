@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/core/ui.dart';
+import 'package:flutter_ecommerce_app/presentation/screen/auth/provider/login_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../../widgets/gap_widget.dart';
 import '../../widgets/link_button.dart';
@@ -15,10 +17,9 @@ class SigninScreen extends StatefulWidget {
 }
 
 class _SigninScreenState extends State<SigninScreen> {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passWordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<LoginProvider>(context);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -34,13 +35,22 @@ class _SigninScreenState extends State<SigninScreen> {
               style: CustomTexStyles.heading1,
             ),
             const GapWidget(),
+            (provider.error != "")
+                ? Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: Text(
+                      provider.error,
+                      style: const TextStyle(color: Colors.red),
+                    ),
+                  )
+                : const SizedBox(),
             PrimaryTextField(
-              controller: emailController,
+              controller: provider.emailController,
               labelText: "email",
             ),
             const GapWidget(),
             PrimaryTextField(
-              controller: passWordController,
+              controller: provider.passWordController,
               labelText: "password",
               obscureText: true,
             ),
@@ -55,8 +65,8 @@ class _SigninScreenState extends State<SigninScreen> {
             ),
             const GapWidget(),
             PrimaryButton(
-              text: "Login",
-              onPressed: () {},
+              text: (provider.isLoading) ? "...." : "Login",
+              onPressed: provider.login,
             ),
             const GapWidget(),
             Row(
