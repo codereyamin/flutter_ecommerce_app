@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/core/ui.dart';
 import 'package:flutter_ecommerce_app/presentation/screen/auth/provider/login_provider.dart';
+import 'package:flutter_ecommerce_app/presentation/screen/auth/signup.dart';
 import 'package:provider/provider.dart';
 
 import '../../widgets/gap_widget.dart';
@@ -95,7 +96,9 @@ class _SigninScreenState extends State<SigninScreen> {
                   const Text("don't have an account ?"),
                   LinkButton(
                     text: " Sign Up",
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, SignupScreen.routeName);
+                    },
                   )
                 ],
               )
