@@ -36,6 +36,7 @@ class LoginProvider with ChangeNotifier {
   }
 
   void login() async {
+    if (!formKey.currentState!.validate()) return;
     String email = emailController.text.trim();
     String password = passWordController.text.trim();
     BlocProvider.of<UserCubit>(context).signIn(email: email, password: password);

@@ -27,59 +27,80 @@ class _SigninScreenState extends State<SigninScreen> {
         title: const Text("Ecommerce App"),
       ),
       body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.all(30),
-          children: [
-            Text(
-              "Log In",
-              style: CustomTexStyles.heading1,
-            ),
-            const GapWidget(),
-            (provider.error != "")
-                ? Padding(
-                    padding: const EdgeInsets.only(bottom: 20),
-                    child: Text(
-                      provider.error,
-                      style: const TextStyle(color: Colors.red),
-                    ),
+        child: Form(
+          key: provider.formKey,
+          child: ListView(
+            padding: const EdgeInsets.all(30),
+            children: [
+              Text(
+                "Log In",
+                style: CustomTexStyles.heading1,
+              ),
+              const GapWidget(),
+              (provider.error != "")
+                  ? Padding(
+                      padding: const EdgeInsets.only(bottom: 20),
+                      child: Text(
+                        provider.error,
+                        style: const TextStyle(color: Colors.red),
+                      ),
+                    )
+                  : const SizedBox(),
+              PrimaryTextField(
+                controller: provider.emailController,
+                labelText: "email",
+                validator: (value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return "Email is required";
+                  }
+                  if (!value.trim().contains("@") && !value.trim().contains(".")) {
+                    return "Email is not valid";
+                  }
+                  return null;
+                },
+              ),
+              const GapWidget(),
+              PrimaryTextField(
+                controller: provider.passWordController,
+                labelText: "password",
+                obscureText: true,
+                validator: (value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return "password is required";
+                  }
+                  if (value.length <= 5) {
+                    return "password most be 6 word";
+                  }
+                  return null;
+                },
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  LinkButton(
+                    text: "forgot password",
+                    onPressed: () {},
                   )
-                : const SizedBox(),
-            PrimaryTextField(
-              controller: provider.emailController,
-              labelText: "email",
-            ),
-            const GapWidget(),
-            PrimaryTextField(
-              controller: provider.passWordController,
-              labelText: "password",
-              obscureText: true,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                LinkButton(
-                  text: "forgot password",
-                  onPressed: () {},
-                )
-              ],
-            ),
-            const GapWidget(),
-            PrimaryButton(
-              text: (provider.isLoading) ? "...." : "Login",
-              onPressed: provider.login,
-            ),
-            const GapWidget(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text("don't have an account ?"),
-                LinkButton(
-                  text: " Sign Up",
-                  onPressed: () {},
-                )
-              ],
-            )
-          ],
+                ],
+              ),
+              const GapWidget(),
+              PrimaryButton(
+                text: (provider.isLoading) ? "...." : "Login",
+                onPressed: provider.login,
+              ),
+              const GapWidget(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("don't have an account ?"),
+                  LinkButton(
+                    text: " Sign Up",
+                    onPressed: () {},
+                  )
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
