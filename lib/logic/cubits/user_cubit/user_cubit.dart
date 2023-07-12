@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecommerce_app/data/models/user/user_model.dart';
-import 'package:flutter_ecommerce_app/data/repositories/user/user_repositories.dart';
+import 'package:flutter_ecommerce_app/data/repositories/user_repositories.dart';
 import 'package:flutter_ecommerce_app/logic/cubits/user_cubit/user_state.dart';
 import 'package:flutter_ecommerce_app/logic/services/preferences.dart';
 
