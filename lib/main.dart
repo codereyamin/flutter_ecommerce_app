@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecommerce_app/core/routes.dart';
 import 'package:flutter_ecommerce_app/core/ui.dart';
 import 'package:flutter_ecommerce_app/logic/cubits/user_cubit/user_cubit.dart';
-import 'package:flutter_ecommerce_app/presentation/screen/auth/signin.dart';
+import 'package:flutter_ecommerce_app/presentation/screen/splash/splash_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,7 +27,7 @@ class EcommerceApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: CustomThemes.defaultTheme,
-        initialRoute: SigninScreen.routeName,
+        initialRoute: SplashScreen.routeName,
         onGenerateRoute: Routes.onGenerateRoute,
       ),
     );

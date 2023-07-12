@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_ecommerce_app/core/api.dart';
@@ -27,10 +28,12 @@ class UserRepository {
   // account singIn function
   Future singIn({required String email, required String password}) async {
     try {
+      log("repositories login function call ");
       Response response = await _api.sendRequest
           .post("/user/signIn", data: jsonEncode({"email": email, "password": password}));
 
       ApiResponse apiResponse = ApiResponse.fromResponse(response);
+      log(response.toString());
       if (!apiResponse.success) {
         throw apiResponse.message.toString();
       }

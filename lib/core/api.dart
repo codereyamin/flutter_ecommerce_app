@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
@@ -12,8 +14,8 @@ class Api {
     _dio.interceptors.add(PrettyDioLogger(
         request: true,
         requestBody: true,
-        responseBody: true,
-        requestHeader: true,
+        responseBody: false,
+        requestHeader: false,
         responseHeader: true));
   }
 
@@ -27,6 +29,9 @@ class ApiResponse {
   ApiResponse({required this.success, this.data, this.message});
   factory ApiResponse.fromResponse(Response response) {
     final data = response.data as Map<String, dynamic>;
+    log("user apiResponse data check");
+    log(data.toString());
+
     return ApiResponse(
         success: data['success'],
         data: data['data'],

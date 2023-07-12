@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecommerce_app/data/models/user/user_model.dart';
 import 'package:flutter_ecommerce_app/data/repositories/user/user_repositories.dart';
@@ -29,8 +31,10 @@ class UserCubit extends Cubit<UserState> {
 
   void signIn({required String email, required String password}) async {
     emit(UserLoadingState());
+    log("user cubit login function call");
     try {
       UserModel userModel = await _userRepository.singIn(email: email, password: password);
+      log("user cubit save data function call");
       _emitLoggedInState(userModel: userModel, email: email, password: password);
     } catch (e) {
       emit(UserErrorState(e.toString()));

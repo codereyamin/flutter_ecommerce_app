@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/presentation/screen/auth/provider/login_provider.dart';
 import 'package:flutter_ecommerce_app/presentation/screen/auth/provider/singup_provider.dart';
 import 'package:flutter_ecommerce_app/presentation/screen/home/home_screen.dart';
+import 'package:flutter_ecommerce_app/presentation/screen/splash/splash_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../presentation/screen/auth/signin.dart';
@@ -23,6 +24,10 @@ class Routes {
       case HomeScreen.routeName:
         return CupertinoPageRoute(
           builder: (context) => const HomeScreen(),
+        );
+      case SplashScreen.routeName:
+        return CupertinoPageRoute(
+          builder: (context) => const SplashScreen(),
         );
       default:
         return null;
