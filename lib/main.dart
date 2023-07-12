@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecommerce_app/core/routes.dart';
 import 'package:flutter_ecommerce_app/core/ui.dart';
 import 'package:flutter_ecommerce_app/logic/cubits/category/category_cubit.dart';
+import 'package:flutter_ecommerce_app/logic/cubits/product/product_cubit.dart';
 import 'package:flutter_ecommerce_app/logic/cubits/user_cubit/user_cubit.dart';
 import 'package:flutter_ecommerce_app/presentation/screen/splash/splash_screen.dart';
 
@@ -26,6 +27,9 @@ class EcommerceApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => CategoryCubit(),
+        ),
+        BlocProvider(
+          create: (context) => ProductCubit(),
         )
       ],
       child: MaterialApp(
